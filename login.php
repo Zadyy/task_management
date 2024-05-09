@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -97,7 +97,7 @@
                         if (response === '1') {
                             window.location.href = "redirect.php";
                         } else {
-                            alert("Invalid username or password");
+                            alert("Username is already in use or password is incorrect.");
                         }
                     }
                 }
@@ -111,4 +111,4 @@
 
 </body>
 
-</html>
+</html> -->
