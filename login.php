@@ -74,7 +74,7 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Enter your password">
         </div>
-        <button class="btn">Login</button>
+        <button class="btn" onclick="check_user()">Login</button>
         <p class="text-center">or</p>
         <button class="btn">Create an Account</button>
     </div>
@@ -83,7 +83,25 @@
         function check_user() {
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
-            fetch('checkuser.php?un=' + username + '&p=' + password)
+            
+            var xhr = new XMLHttpRequest();
+
+            xhr.open("POST", "checkuser.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onload = function () {
+                if (xhr.readyState === xhr.DONE) {
+                    if (xhr.status === 200) {
+                        var response = xhr.responseText;
+
+                        if (response === '1') {
+                            window.location.href = "redirect.php";
+                        } else {
+                            alert("Invalid username or password");
+                        }
+                    }
+                }
+            }
         };
     </script>
 
