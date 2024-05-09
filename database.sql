@@ -6,41 +6,41 @@ CREATE TABLE IF NOT EXISTS task_status (
     id TINYINT PRIMARY KEY NOT NULL,
     name varchar(20) NOT NULL
 );
-CREATE TABLE IF NOT EXISTS user (
+CREATE TABLE  Customers (
     id INT PRIMARY KEY NOT NULL,
     username VARCHAR(64) NOT NULL,
     password VARCHAR(64) UNIQUE NOT NULL,
     email VARCHAR(320) UNIQUE NOT NULL CHECK (email LIKE '%@gmail.com' or email like '%yahoo.com'),
-    created_at TIMESTAMP NOT NULL,
-    phone_no CHAR(8)   NOT NULL    
-    CHECK (phone_number LIKE '99______') or 
-    (phone_number like '94________') or 
-    (phone_number like '85______') or 
-    (phone_number like '85______') or 
-    (phone_number like '90______') or 
-    (phone_number like '91______')or 
-    (phone_number like '96______')or 
-    (phone_number like '80______') or
-    (phone_number like '86______') or 
-    (phone_number like '88______') or 
-    (phone_number like '89______') or
-    (phone_number like '88______') or 
-    (phone_number like '70______')or 
-    (phone_number like '71______') or 
-    (phone_number like '75______') or 
-    (phone_number like '77______') or 
-    (phone_number like '76______') or 
-    (phone_number like '830_____') OR
-    (phone_number like '831_____') OR 
-    (phone_number like '930_____') OR 
-    (phone_number like '931_____') OR
-    (phone_number like '72______')  OR 
-    (phone_number like '932_____') OR 
-    (phone_number like '934_____') OR
-    (phone_number like '970_____') OR 
-    (phone_number like '971_____') OR 
-    (phone_number like '72______'),
-);
+    created_at TIMESTAMP not null default current_timestamp,
+    phone_no CHAR(8)   NOT NULL   
+	CHECK (phone_no LIKE '99______' or  
+	phone_no like '94________' or 
+    phone_no like '85______' or 
+    phone_no like '85______' or 
+    phone_no like '90______' or 
+    phone_no like '91______'or 
+    phone_no like '96______'or 
+    phone_no like '80______' or
+    phone_no like '86______' or 
+    phone_no like '88______' or 
+    phone_no like '89______' or
+    phone_no like '88______' or 
+    phone_no like '70______'or 
+    phone_no like '71______' or 
+    phone_no like '75______' or 
+    phone_no like '77______' or 
+    phone_no like '76______' or 
+    phone_no like '830_____' OR
+    phone_no like '831_____' OR 
+    phone_no like '930_____' OR 
+    phone_no like '931_____' OR
+    phone_no like '72______'  OR 
+    phone_no like '932_____' OR 
+    phone_no like '934_____' OR
+    phone_no like '970_____' OR 
+    phone_no like '971_____' OR 
+    phone_no like '72______')
+    );
 CREATE TABLE IF NOT EXISTS role (
     id int PRIMARY KEY NOT NULL,
     name varchar(100) NOT NULL
@@ -71,33 +71,33 @@ CREATE TABLE IF NOT EXISTS staff (
     password VARCHAR(64),
     date_of_enrollment TIMESTAMP,
     phone_no CHAR(8) NOT NULL UNIQUE
-    CHECK (phone_number LIKE '99______') or 
-    (phone_number like '94________') or 
-    (phone_number like '85______') or 
-    (phone_number like '85______') or 
-    (phone_number like '90______') or 
-    (phone_number like '91______')or 
-    (phone_number like '96______')or 
-    (phone_number like '80______') or
-    (phone_number like '86______') or 
-    (phone_number like '88______') or 
-    (phone_number like '89______') or
-    (phone_number like '88______') or 
-    (phone_number like '70______')or 
-    (phone_number like '71______') or 
-    (phone_number like '75______') or 
-    (phone_number like '77______') or 
-    (phone_number like '76______') or 
-    (phone_number like '830_____') OR
-    (phone_number like '831_____') OR 
-    (phone_number like '930_____') OR 
-    (phone_number like '931_____') OR
-     (phone_number like '72______')  OR 
-      (phone_number like '932_____') OR 
-       (phone_number like '934_____') OR
-        (phone_number like '970_____') OR 
-         (phone_number like '971_____') OR 
-          (phone_number like '72______'),
+    CHECK (phone_no LIKE '99______') or 
+    (phone_no like '94________') or 
+    (phone_no like '85______') or 
+    (phone_no like '85______') or 
+    (phone_no like '90______') or 
+    (phone_no like '91______')or 
+    (phone_no like '96______')or 
+    (phone_no like '80______') or
+    (phone_no like '86______') or 
+    (phone_no like '88______') or 
+    (phone_no like '89______') or
+    (phone_no like '88______') or 
+    (phone_no like '70______')or 
+    (phone_no like '71______') or 
+    (phone_no like '75______') or 
+    (phone_no like '77______') or 
+    (phone_no like '76______') or 
+    (phone_no like '830_____') OR
+    (phone_no like '831_____') OR 
+    (phone_no like '930_____') OR 
+    (phone_no like '931_____') OR
+    (phone_no like '72______')  OR 
+    (phone_no like '932_____') OR 
+    (phone_no like '934_____') OR
+    (phone_no like '970_____') OR 
+    (phone_no like '971_____') OR 
+    (phone_no like '72______'),
     email VARCHAR(320) NOT NULL CHECK (email LIKE '%@taskmanager.com' or email like '%@%.com'),
 );
 CREATE TABLE IF NOT EXISTS task_assignment (
@@ -120,43 +120,19 @@ INSERT INTO task_status VALUES
 ('1','Solved'),
 ('3','Solving'),
 ('2','Solved');
-CREATE TABLE IF NOT EXISTS user (
-    id INT PRIMARY KEY NOT NULL,
-    username VARCHAR(64) NOT NULL,
-    password VARCHAR(64) UNIQUE NOT NULL,
-    email VARCHAR(320) UNIQUE NOT NULL CHECK (email LIKE '%@gmail.com' or email like '%yahoo.com'),
-    created_at TIMESTAMP NOT NULL,
-    phone_no CHAR(8)   NOT NULL    
-    CHECK (phone_number LIKE '99______') or 
-    (phone_number like '94________') or 
-    (phone_number like '85______') or 
-    (phone_number like '85______') or 
-    (phone_number like '90______') or 
-    (phone_number like '91______')or 
-    (phone_number like '96______')or 
-    (phone_number like '80______') or
-    (phone_number like '86______') or 
-    (phone_number like '88______') or 
-    (phone_number like '89______') or
-    (phone_number like '88______') or 
-    (phone_number like '70______')or 
-    (phone_number like '71______') or 
-    (phone_number like '75______') or 
-    (phone_number like '77______') or 
-    (phone_number like '76______') or 
-    (phone_number like '830_____') OR
-    (phone_number like '831_____') OR 
-    (phone_number like '930_____') OR 
-    (phone_number like '931_____') OR
-    (phone_number like '72______')  OR 
-    (phone_number like '932_____') OR 
-    (phone_number like '934_____') OR
-    (phone_number like '970_____') OR 
-    (phone_number like '971_____') OR 
-    (phone_number like '72______'),
+INSERT INTO Customers (id, username, password, email, phone_no) VALUES
+(1, 'Tuguldur', 'password123', 'Tuugiienkhbayr@gmail.com', '99706661'),
+(2, 'Och-Uyanga', 'pass123@6', 'ochuyanga254@yahoo.com', '99234567'),
+(3, 'Namuulin', 'securepass', 'namuulin234@gmail.com', '99765432'),
+(4, 'Nymbayr', 'strongpassword', 'nymbayr2024@yahoo.com', '99573778');
+CREATE TABLE IF NOT EXISTS department (
+    id int PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP NOT NULL
 );
-INSERT INTO user (id, username, password, email, created_at, phone_no) VALUES
-(1, 'john_doe', 'password123', 'Tuugiienkhbayr@gmail.com', CURRENT_TIMESTAMP, '99123456'),
-(2, 'jane_smith', 'pass123', 'nymbayrh@yahoo.com', CURRENT_TIMESTAMP, '94234567'),
-(3, 'mike_jones', 'securepass', 'mike_jones@gmail.com', CURRENT_TIMESTAMP, '85765432'),
-(4, 'sara_white', 'strongpassword', 'sara_white@yahoo.com', CURRENT_TIMESTAMP, '90786543');
+INSERT INTO department VALUES
+('3','Financial','CURRENT_TIMESTAMP'),
+('4','Development','CURRENT_TIMESTAMP'),
+('2','Human Resources','CURRENT_TIMESTAMP'),
+('1','Marketing','CURRENT_TIMESTAMP');
+
