@@ -76,7 +76,7 @@
         </div>
         <button class="btn" onclick="check_user()">Login</button>
         <p class="text-center">or</p>
-        <button class="btn">Create an Account</button>
+        <button class="btn" onclick="create_user()">Create an Account</button>
     </div>
 
     <script>
@@ -102,6 +102,10 @@
                     }
                 }
             }
+        };
+
+        function create_user() {
+            window.location.href = "createuser.php";
         };
     </script>
 
