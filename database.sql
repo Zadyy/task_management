@@ -10,10 +10,10 @@ CREATE TABLE IF NOT EXISTS task_status (
 CREATE TABLE IF NOT EXISTS user (
     id INT PRIMARY KEY NOT NULL,
     username VARCHAR(64) NOT NULL,
-    password VARCHAR(64) NOT NULL,
-    email VARCHAR(320) NOT NULL CHECK (email LIKE '%@gmail.com' or email like '%yahoo.com'),
+    password VARCHAR(64) UNIQUE NOT NULL,
+    email VARCHAR(320) UNIQUE NOT NULL CHECK (email LIKE '%@gmail.com' or email like '%yahoo.com'),
     created_at TIMESTAMP NOT NULL,
-    phone_no CHAR(8)  NOT NULL    
+    phone_no CHAR(8)   NOT NULL    
     CHECK (phone_number LIKE '99______') or 
     (phone_number like '94________') or 
     (phone_number like '85______') or 
@@ -57,7 +57,6 @@ CREATE TABLE IF NOT EXISTS staff_status (
     id int PRIMARY KEY NOT NULL,
     name VARCHAR(100) NOT NULL
 );
-
 CREATE TABLE IF NOT EXISTS task (
     id INT PRIMARY KEY NOT NULL,
     title VARCHAR(200) NOT NULL,
@@ -74,7 +73,7 @@ CREATE TABLE IF NOT EXISTS staff (
     username VARCHAR(64) NOT NULL,
     password VARCHAR(64),
     date_of_enrollment TIMESTAMP,
-    phone_no CHAR(0) NOT NULL 
+    phone_no CHAR(8) NOT NULL UNIQUE
     CHECK (phone_number LIKE '99______') or 
     (phone_number like '94________') or 
     (phone_number like '85______') or 
