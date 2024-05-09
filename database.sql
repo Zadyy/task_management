@@ -1,3 +1,7 @@
+CREATE database IF NOT EXISTS task_management_db;
+
+USE task_management_db;
+
 CREATE TABLE IF NOT EXISTS task_status (
     id TINYINT,
     name varchar(20)
