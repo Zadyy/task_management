@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,26 +16,31 @@
             align-items: center;
             height: 100vh;
         }
+
         .container {
             background-color: #fff;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         .input-group {
             margin-bottom: 15px;
         }
+
         .input-group label {
             display: block;
             font-weight: bold;
             margin-bottom: 5px;
         }
+
         .input-group input {
             width: 100%;
             padding: 8px;
             border-radius: 5px;
             border: 1px solid #ccc;
         }
+
         .btn {
             display: block;
             width: 100%;
@@ -46,14 +52,17 @@
             font-size: 16px;
             cursor: pointer;
         }
+
         .btn:hover {
             background-color: #0056b3;
         }
+
         .text-center {
             text-align: center;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h2>Login</h2>
@@ -69,5 +78,15 @@
         <p class="text-center">or</p>
         <button class="btn">Create an Account</button>
     </div>
+
+    <script>
+        function check_user() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            fetch('checkuser.php?un=' + username + '&p=' + password)
+        };
+    </script>
+
 </body>
+
 </html>
