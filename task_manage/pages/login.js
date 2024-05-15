@@ -60,7 +60,7 @@ const Login = () => {
           Login
         </button>
       </form>
-      <button type="button" onClick={handleSignup}>
+      <button type="button" onClick={handleSignupRedirect}>
         Signup
       </button>
     </div>

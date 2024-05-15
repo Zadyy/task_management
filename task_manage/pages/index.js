@@ -4,20 +4,37 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 const Login = () => {
-  const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLogin = () => {
-    // Here you can implement your login logic, e.g., send a request to your server
-    // and handle authentication
-    console.log('Login clicked');
-  };
-
-  const handleSignup = () => {
-    // Redirect to signup page
-    router.push('/signup');
-  };
+    const router = useRouter();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+  
+    const handleLogin = async () => {
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          router.push(data.redirect);
+        } else {
+          const errorData = await response.json();
+          alert(errorData.error); // or display error message to user
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        // Handle other errors as needed
+      }
+    };
+  
+    const handleSignupRedirect = () => {
+      // Redirect to signup page
+      router.push('/signup');
+    };
 
   return (
     <div>
@@ -43,7 +60,7 @@ const Login = () => {
           Login
         </button>
       </form>
-      <button type="button" onClick={handleSignup}>
+      <button type="button" onClick={handleSignupRedirect}>
         Signup
       </button>
     </div>
