@@ -1,5 +1,6 @@
-CREATE DATABASE IF NOT EXISTS task_management_db;
-USE task_management_db;
+drop database if exists task_management;
+create database if not exists task_management;
+use task_management;
 
 -- Create tables--
 CREATE TABLE IF NOT EXISTS task_status (
@@ -189,3 +190,54 @@ INSERT INTO department VALUES
 ('4','Development','CURRENT_TIMESTAMP'),
 ('2','Human Resources','CURRENT_TIMESTAMP'),
 ('1','Marketing','CURRENT_TIMESTAMP');
+
+
+
+/* STORED PROCEDURES */
+
+DELIMITER //
+
+CREATE PROCEDURE check_login (in email_value varchar(255), in password_value varchar(255))
+BEGIN
+    declare email_result varchar(255); -- Renamed the local variable
+    declare type varchar(5);
+    select email, user_type into email_result, type from login_info where email=email_value and password=password_value;
+    select email_result as email, type as user_type; -- Changed the variable name here as well
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE check_email (in email_value varchar(255))
+BEGIN
+    declare email_result varchar(255); -- Renamed the local variable
+    select email into email_result from login_info where email=email_value;
+    select email_result as email; -- Changed the variable name here as well
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sign_up (in email_value varchar(255), in password_value varchar(255))
+BEGIN
+    insert into login_info (email, password, user_type) values (email_value, password_value, 'user');
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE get_task(in email_value varchar(255))
+BEGIN
+	select task.title, task.description, task.created_at, task_status.name, task.solution into title, description, created_at, status, solution
+    from task
+    left join task_status on task.status = task_status.id
+    left join task_assignment on task.id = task_assignment.task_id
+    left join user on task_assignment.creator_id = user.id
+    left join login_info on user.login_id = login_info.id
+    where login_info.email = email_value;
+END //
+
+DELIMITER ;
