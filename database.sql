@@ -11,7 +11,6 @@ CREATE TABLE IF NOT EXISTS user (
     id INT PRIMARY KEY NOT NULL,
     lastname VARCHAR(64) NOT NULL,
     firstname VARCHAR(64) NOT NULL,
-    username VARCHAR(64) NOT NULL,
     login_id INT NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     phone_no CHAR(8) NOT NULL,
@@ -49,7 +48,7 @@ CREATE TABLE IF NOT EXISTS role (
 
 CREATE TABLE IF NOT EXISTS login_info (
     id INT PRIMARY KEY NOT NULL,
-    user_type ENUM('user', 'staff') NOT NULL DEFAULT 'user',
+    user_type varchar(5)  NOT NULL DEFAULT 'user',
     email VARCHAR(320) UNIQUE NOT NULL CHECK (email LIKE '%@taskmanager.com' OR email LIKE '%@%.com'),
     password VARCHAR(64) UNIQUE NOT NULL
 );
@@ -118,11 +117,11 @@ INSERT INTO task_status (id, name) VALUES
 (3, 'Completed'), 
 (4, 'On Hold');
 
-INSERT INTO user (id, lastname, firstname, username, login_id, phone_no) VALUES 
-(1, 'Doe', 'Tuguldur', 'Enkhbayr', 1, '99123456'), 
-(2, 'Smith', 'Nymbayr', 'Ochir', 2, '94123456'), 
-(3, 'Jones', 'Och-uyanga', 'Och-uyanga', 3, '85123456'), 
-(4, 'Brown', 'Namuulin', 'Namuulin', 4, '90123456');
+INSERT INTO user (id, lastname, firstname,  login_id, phone_no) VALUES 
+(1,  'Tuguldur', 'Enkhbayr', 1, '99123456'), 
+(2,  'Nymbayr', 'Ochir', 2, '94123456'), 
+(3,  'Och-uyanga', 'Och-uyanga', 3, '85123456'), 
+(4,  'Namuulin', 'Namuulin', 4, '90123456');
 
 INSERT INTO role (id, name) VALUES 
 (1, 'Admin'), 
