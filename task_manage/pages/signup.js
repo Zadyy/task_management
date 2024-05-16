@@ -8,12 +8,27 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignup = () => {
-    // Here you can implement your signup logic, e.g., send a request to your server
-    // and handle user registration
-    console.log('Signup clicked');
-    // Redirect to login page after successful signup
-    router.push('/login');
+  const handleSignup = async () => {
+    try {
+      const response = await fetch('/api/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        router.push(data.redirect);
+      } else {
+        const errorData = await response.json();
+        alert(errorData.error); // or display error message to user
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle other errors as needed
+    }
   };
 
   const handleLoginRedirect = () => {
