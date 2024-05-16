@@ -9,6 +9,12 @@ const Login = () => {
     const [password, setPassword] = useState('');
   
     const handleLogin = async () => {
+      // Validate email and password
+      if (!email || !password) {
+        alert('Please provide both email and password');
+        return;
+      }
+    
       try {
         const response = await fetch('/api/login', {
           method: 'POST',
@@ -17,7 +23,7 @@ const Login = () => {
           },
           body: JSON.stringify({ email, password }),
         });
-  
+    
         if (response.ok) {
           const data = await response.json();
           router.push(data.redirect);
@@ -30,6 +36,7 @@ const Login = () => {
         // Handle other errors as needed
       }
     };
+    
   
     const handleSignupRedirect = () => {
       // Redirect to signup page
