@@ -6,11 +6,10 @@ CREATE TABLE IF NOT EXISTS task_status (
     id TINYINT PRIMARY KEY NOT NULL,
     name varchar(20) NOT NULL
 );
-CREATE TABLE  Customers (
+CREATE TABLE IF NOT EXISTS user (
     id INT PRIMARY KEY NOT NULL,
     username VARCHAR(64) NOT NULL,
-    password VARCHAR(64) UNIQUE NOT NULL,
-    email VARCHAR(320) UNIQUE NOT NULL CHECK (email LIKE '%@gmail.com' or email like '%yahoo.com'),
+    login_id int FOREIGN  KEY NOT NULL,
     created_at TIMESTAMP not null default current_timestamp,
     phone_no CHAR(8)   NOT NULL   
 	CHECK (phone_no LIKE '99______' or  
@@ -45,6 +44,12 @@ CREATE TABLE IF NOT EXISTS role (
     id int PRIMARY KEY NOT NULL,
     name varchar(100) NOT NULL
 );
+CREATE TABLE IF NOT EXISTS login_info (
+    id int PRIMARY KEY NOT NULL,
+    user_type not null default ('user'or 'staff'),
+    email VARCHAR(320) UNIQUE NOT NULL CHECK (email LIKE '%@taskmanager.com' or email like '%@%.com'),
+    password VARCHAR(64) UNIQUE NOT NULL,
+);
 CREATE TABLE IF NOT EXISTS department (
     id int PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -66,9 +71,8 @@ CREATE TABLE IF NOT EXISTS staff (
     id INT PRIMaRY KEY NOT NULL,
     department_id int FOREIGN KEY NOT NULL,
     role_id int FOREIGN KEY NOT NULL,
+    login_id int FOREIGN KEY NOT NULL,
     status TINYINT DEFAULT 'Active',
-    username VARCHAR(64) NOT NULL,
-    password VARCHAR(64),
     date_of_enrollment TIMESTAMP,
     phone_no CHAR(8) NOT NULL UNIQUE
     CHECK (phone_no LIKE '99______') or 
@@ -98,7 +102,6 @@ CREATE TABLE IF NOT EXISTS staff (
     (phone_no like '970_____') OR 
     (phone_no like '971_____') OR 
     (phone_no like '72______'),
-    email VARCHAR(320) NOT NULL CHECK (email LIKE '%@taskmanager.com' or email like '%@%.com'),
 );
 CREATE TABLE IF NOT EXISTS task_assignment (
     task_id int  FOREIGN KEY NOT NULL,
@@ -120,7 +123,7 @@ INSERT INTO task_status VALUES
 ('1','Solved'),
 ('3','Solving'),
 ('2','Solved');
-INSERT INTO Customers (id, username, password, email, phone_no) VALUES
+INSERT INTO users (id,phone_no) VALUES
 (1, 'Tuguldur', 'password123', 'Tuugiienkhbayr@gmail.com', '99706661'),
 (2, 'Och-Uyanga', 'pass123@6', 'ochuyanga254@yahoo.com', '99234567'),
 (3, 'Namuulin', 'securepass', 'namuulin234@gmail.com', '99765432'),
