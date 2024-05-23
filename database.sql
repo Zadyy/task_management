@@ -44,7 +44,8 @@ CREATE TABLE IF NOT EXISTS user (
 
 CREATE TABLE IF NOT EXISTS role (
     id INT PRIMARY KEY NOT NULL,
-    name VARCHAR(100) NOT NULL
+    name VARCHAR(100) NOT NULL,
+    department_id INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS login_info (
@@ -124,11 +125,11 @@ INSERT INTO user (id, lastname, firstname,  login_id, phone_no) VALUES
 (3,  'Och-uyanga', 'Och-uyanga', 3, '85123456'), 
 (4,  'Namuulin', 'Namuulin', 4, '90123456');
 
-INSERT INTO role (id, name) VALUES 
-(1, 'Admin'), 
-(2, 'Manager'), 
-(3, 'Developer'), 
-(4, 'Tester');
+INSERT INTO role (id, name, department_id) VALUES 
+(1, 'Admin', 3), 
+(2, 'Manager', 2), 
+(3, 'Developer', 3), 
+(4, 'Tester', 3);
 
 INSERT INTO login_info (id, user_type, email, password) VALUES 
 (4, 'user', 'tuugiienkhbayr@taskmanager.com', 'password123'), 
@@ -194,7 +195,7 @@ INSERT INTO department VALUES
 
 
 /* STORED PROCEDURES */
-
+use task_management;
 DELIMITER //
 
 CREATE PROCEDURE check_login (in email_value varchar(255), in password_value varchar(255))
