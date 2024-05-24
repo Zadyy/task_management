@@ -1,11 +1,18 @@
 // pages/signup.js
 import { useState } from 'react';
 import axios from 'axios';
+import { useRouter } from 'next/router';
+
 
 export default function Signup() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [roleId, setRoleId] = useState(1); // Default to 'user'
+  const router = useRouter();
+
+  const handleLogin = () => {
+    router.push('/login');
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,6 +45,7 @@ export default function Signup() {
         <option value={3}>Admin</option>
       </select>
       <button type="submit">Signup</button>
+      <button type="button" onClick={handleLogin}>Go To Login Page</button>
     </form>
   );
 }

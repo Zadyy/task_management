@@ -8,7 +8,7 @@ export const verifyToken = (handler) => async (req, res) => {
   }
 
   try {
-    const decoded = jwt.verify(token, 'your_jwt_secret');
+    const decoded = jwt.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET);
     req.user = decoded;
     return handler(req, res);
   } catch (error) {

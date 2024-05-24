@@ -13,7 +13,19 @@ export default function Login() {
     try {
       const response = await axios.post('/api/login', { username, password });
       localStorage.setItem('token', response.data.token);
-      router.push('/user/dashboard'); // Default redirect to user dashboard
+
+      const type = await axios.post('/api/checktype', { username })
+      const role = type.data.type.role_name;
+      console.log(type);
+      console.log(role);
+      if (role == 'user') {
+        router.push('/user/dashboard');
+      } else if (role == 'staff') {
+        router.push('/staff/dashboard');
+      } else if (role == 'admin') {
+        router.push('/admin/dashboard');
+      };
+
     } catch (error) {
       alert('Invalid credentials');
     }

@@ -24,7 +24,7 @@ export default async function handler(req, res) {
     return res.status(401).json({ message: 'Invalid credentials' });
   }
 
-  const token = jwt.sign({ userId: user.id, roleId: user.role_id }, 'your_jwt_secret', {
+  const token = jwt.sign({ userId: user.id, roleId: user.role_id }, process.env.NEXT_PUBLIC_JWT_SECRET, {
     expiresIn: '1h',
   });
 
