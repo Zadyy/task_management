@@ -28,7 +28,7 @@ router.post('/api/user_task', (req, res) => {
     
 
     if (results) {
-        res.status(200).json(tasks);
+        res.status(200).json(results);
       } else {
       res.status(401).json({ error: 'Task not found' });
     }
